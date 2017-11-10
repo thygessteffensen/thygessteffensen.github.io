@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="da"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>GamePlayTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">MainGUI (10-Nov-2017 12:51:35)</a> &gt; <a href="../../index.html" class="el_group">16_del2</a> &gt; <a href="../index.html" class="el_bundle">CDIO2</a> &gt; <a href="index.source.html" class="el_package">tests</a> &gt; <span class="el_source">GamePlayTest.java</span></div><h1>GamePlayTest.java</h1><pre class="source lang-java linenums">package tests;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="da"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>GamePlayTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">MainGUI (10-Nov-2017 13:07:54)</a> &gt; <a href="../../index.html" class="el_group">16_del2</a> &gt; <a href="../index.html" class="el_bundle">CDIO2</a> &gt; <a href="index.source.html" class="el_package">tests</a> &gt; <span class="el_source">GamePlayTest.java</span></div><h1>GamePlayTest.java</h1><pre class="source lang-java linenums">package tests;
 
 import static org.junit.Assert.*;
 
@@ -38,24 +38,24 @@ import org.junit.Test;
 
 	@Test
 	public void testGetTextID() {
-<span class="nc" id="L41">		boolean test = true; // Bliver sat til false, hvis getBalanceChange returnerer en forkert værdi</span>
-<span class="nc" id="L42">		String[] expected = new String[11]; // Opretter array der indeholder alle balanceChange værdier</span>
-<span class="nc" id="L43">		expected[0] = &quot;tower&quot;; expected[1] = &quot;crater&quot;; expected[2] = &quot;palaceGates&quot;; </span>
-<span class="nc" id="L44">		expected[3] = &quot;coldDessert&quot;; expected[4] = &quot;walledCity&quot;; expected[5] = &quot;monastery&quot;; </span>
-<span class="nc" id="L45">		expected[6] = &quot;blackCave&quot;; expected[7] = &quot;mountain&quot;; expected[8] = &quot;werewall&quot;; </span>
-<span class="nc" id="L46">		expected[9] = &quot;pit&quot;; expected[10] = &quot;goldmine&quot;;</span>
+		boolean test = true; // Bliver sat til false, hvis getBalanceChange returnerer en forkert værdi
+		String[] expected = new String[11]; // Opretter array der indeholder alle balanceChange værdier
+		expected[0] = &quot;tower&quot;; expected[1] = &quot;crater&quot;; expected[2] = &quot;palaceGates&quot;; 
+		expected[3] = &quot;coldDessert&quot;; expected[4] = &quot;walledCity&quot;; expected[5] = &quot;monastery&quot;; 
+		expected[6] = &quot;blackCave&quot;; expected[7] = &quot;mountain&quot;; expected[8] = &quot;werewall&quot;; 
+		expected[9] = &quot;pit&quot;; expected[10] = &quot;goldmine&quot;;
 		// for-loop der kører alle muligheder af terning slag igennem.
-<span class="nc bnc" id="L48" title="All 2 branches missed.">		for(int i = 0; i&lt;11; i++) {</span>
-<span class="nc" id="L49">			gp.useTurn(i, 2); // starter med input i useTurn() på 2 og går op til 12.</span>
+		for(int i = 0; i&lt;11; i++) {
+			gp.useTurn(i, 2); // starter med input i useTurn() på 2 og går op til 12.
 <span class="nc" id="L50">			String actual = gp.getTextID();</span>
 			// Sætter test til false, hvis expected og actual ikke matcher.
-<span class="nc bnc" id="L52" title="All 2 branches missed.">			if(!actual.equals(expected[i])) {</span>
-<span class="nc" id="L53">				test = false;</span>
-<span class="nc" id="L54">				break;</span>
+			if(!actual.equals(expected[i])) {
+				test = false;
+				break;
 			}
 		}
-<span class="nc" id="L57">		assertTrue(&quot;useTurn tilegner ikke den rigtige textID&quot;, test);</span>
-<span class="nc" id="L58">	}</span>
+		assertTrue(&quot;useTurn tilegner ikke den rigtige textID&quot;, test);
+	}
 
 	/**
 	 * Tester getGameWon() som retunerer en boolean.
@@ -115,6 +115,15 @@ import org.junit.Test;
 		 * Void. Benyttes til at udføre test på getters and settes.
 		 */
 <span class="nc" id="L117">	}</span>
+	
+	public void runAll() {
+<span class="nc" id="L120">		testGetBalanceChange();</span>
+<span class="nc" id="L121">		testGetExtraTurn();</span>
+<span class="nc" id="L122">		testGetGameWon();</span>
+<span class="nc" id="L123">		testGetGameWon1();</span>
+<span class="nc" id="L124">		testGetTextID();</span>
+<span class="nc" id="L125">		testUseTurn();</span>
+<span class="nc" id="L126">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>MainGUI (10-Nov-2017 12:51:35)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>MainGUI (10-Nov-2017 13:07:54)</div></body></html>
