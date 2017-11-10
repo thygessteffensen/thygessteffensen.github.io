@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="da"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>GamePlayTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">MainGUI (10-Nov-2017 12:51:35)</a> &gt; <a href="../../index.html" class="el_group">16_del2</a> &gt; <a href="../index.html" class="el_bundle">CDIO2</a> &gt; <a href="index.source.html" class="el_package">tests</a> &gt; <span class="el_source">GamePlayTest.java</span></div><h1>GamePlayTest.java</h1><pre class="source lang-java linenums">package tests;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+<span class="nc" id="L9">public class GamePlayTest {</span>
+<span class="nc" id="L10">	cdio2.GamePlay gp = new cdio2.GamePlay();</span>
+
+/*
+ * hele gamePlay klasse er bygget op om først at give useTurn nogle værdier
+ * her terningen, som den så herefter finder ud at hvad balanceChange og textID skal være
+ */
+	
+	/**
+	 * Tester getBalanceChange i alle tilfælgde.
+	 */
+	@Test
+	public void testGetBalanceChange() {
+<span class="nc" id="L22">		boolean test = true; // Bliver sat til false, hvis getBalanceChange returnerer en forkert værdi</span>
+<span class="nc" id="L23">		int[] expected = new int[11]; // Opretter array der indeholder alle balanceChange værdier</span>
+<span class="nc" id="L24">		expected[0] = 250; expected[1] = -100; expected[2] = 100; expected[3] = -20; expected[4] = 180;</span>
+<span class="nc" id="L25">		expected[5] = 0; expected[6] = -70; expected[7] = 60; expected[8] = -80; expected[9] = -50; expected[10] = 650;</span>
+		// for-loop der kører alle muligheder af terning slag igennem.
+<span class="nc bnc" id="L27" title="All 2 branches missed.">		for(int i = 0; i&lt;11; i++) {</span>
+<span class="nc" id="L28">			gp.useTurn(i, 2); // starter med input i useTurn() på 2 og går op til 12.</span>
+<span class="nc" id="L29">			int actual = gp.getBalanceChange();</span>
+			// Sætter test til false, hvis expected og actual ikke matcher.
+<span class="nc bnc" id="L31" title="All 2 branches missed.">			if(expected[i] != actual) {</span>
+<span class="nc" id="L32">				test = false;</span>
+<span class="nc" id="L33">				break;</span>
+			}
+		}
+<span class="nc" id="L36">		assertTrue(&quot;useTurn tilegner ikke den rigtige balanceændring&quot;, test);</span>
+<span class="nc" id="L37">	}</span>
+
+	@Test
+	public void testGetTextID() {
+<span class="nc" id="L41">		boolean test = true; // Bliver sat til false, hvis getBalanceChange returnerer en forkert værdi</span>
+<span class="nc" id="L42">		String[] expected = new String[11]; // Opretter array der indeholder alle balanceChange værdier</span>
+<span class="nc" id="L43">		expected[0] = &quot;tower&quot;; expected[1] = &quot;crater&quot;; expected[2] = &quot;palaceGates&quot;; </span>
+<span class="nc" id="L44">		expected[3] = &quot;coldDessert&quot;; expected[4] = &quot;walledCity&quot;; expected[5] = &quot;monastery&quot;; </span>
+<span class="nc" id="L45">		expected[6] = &quot;blackCave&quot;; expected[7] = &quot;mountain&quot;; expected[8] = &quot;werewall&quot;; </span>
+<span class="nc" id="L46">		expected[9] = &quot;pit&quot;; expected[10] = &quot;goldmine&quot;;</span>
+		// for-loop der kører alle muligheder af terning slag igennem.
+<span class="nc bnc" id="L48" title="All 2 branches missed.">		for(int i = 0; i&lt;11; i++) {</span>
+<span class="nc" id="L49">			gp.useTurn(i, 2); // starter med input i useTurn() på 2 og går op til 12.</span>
+<span class="nc" id="L50">			String actual = gp.getTextID();</span>
+			// Sætter test til false, hvis expected og actual ikke matcher.
+<span class="nc bnc" id="L52" title="All 2 branches missed.">			if(!actual.equals(expected[i])) {</span>
+<span class="nc" id="L53">				test = false;</span>
+<span class="nc" id="L54">				break;</span>
+			}
+		}
+<span class="nc" id="L57">		assertTrue(&quot;useTurn tilegner ikke den rigtige textID&quot;, test);</span>
+<span class="nc" id="L58">	}</span>
+
+	/**
+	 * Tester getGameWon() som retunerer en boolean.
+	 * Denne boolean er 'false' når programmet starter.
+	 */
+	@Test
+	public void testGetGameWon() {
+<span class="nc" id="L66">		boolean expected = false;</span>
+<span class="nc" id="L67">		boolean actual = gp.getGameWon();</span>
+<span class="nc" id="L68">		assertEquals(&quot;?&quot;, expected, actual);</span>
+<span class="nc" id="L69">	}</span>
+
+	/**
+	 * Tester getGameWon() som retunerer en boolean.
+	 * Denne boolean er 'false' når programmet starter.
+	 * Her er tilstanden ændret.
+	 */
+	@Test
+	public void testGetGameWon1() {
+<span class="nc" id="L78">		boolean expected = true;</span>
+<span class="nc" id="L79">		gp.useTurn(5, 5);</span>
+<span class="nc" id="L80">		boolean actual = gp.getExtraTurn();</span>
+<span class="nc" id="L81">		assertEquals(&quot;?&quot;, expected, actual);</span>
+<span class="nc" id="L82">	}</span>
+
+
+	/**
+	 * Tester setGameWon(boolean), som ændre tilstanden af gameWon.
+	 * Samtidig bliver getGameWon() testet, da vi her har en anden
+	 * tilstand af gameWon.
+	 */
+	@Test
+	public void testSetGameWon() {
+<span class="nc" id="L92">		boolean expected = true;</span>
+<span class="nc" id="L93">		gp.setGameWon(true);</span>
+<span class="nc" id="L94">		boolean actual = gp.getGameWon();</span>
+<span class="nc" id="L95">		assertEquals(&quot;?&quot;, expected, actual);</span>
+<span class="nc" id="L96">	}</span>
+
+	/**
+	 * Tester getgetExtreTurn() som retunerer en boolean.
+	 * Denne boolean er 'false' når programmet starter.
+	 */
+	@Test
+	public void testGetExtraTurn() {
+<span class="nc" id="L104">		boolean expected = false;</span>
+<span class="nc" id="L105">		boolean actual = gp.getExtraTurn();</span>
+<span class="nc" id="L106">		assertEquals(&quot;?&quot;, expected, actual);</span>
+<span class="nc" id="L107">	}</span>
+
+	/**
+	 * Void. Benyttes til at udføre test på getters and settes.
+	 */
+	@Test
+	public void testUseTurn() {
+		/*
+		 * Void. Benyttes til at udføre test på getters and settes.
+		 */
+<span class="nc" id="L117">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>MainGUI (10-Nov-2017 12:51:35)</div></body></html>

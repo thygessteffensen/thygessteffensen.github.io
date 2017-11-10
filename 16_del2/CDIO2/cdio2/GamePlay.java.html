@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="da"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>GamePlay.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">MainGUI (10-Nov-2017 12:51:35)</a> &gt; <a href="../../index.html" class="el_group">16_del2</a> &gt; <a href="../index.html" class="el_bundle">CDIO2</a> &gt; <a href="index.source.html" class="el_package">cdio2</a> &gt; <span class="el_source">GamePlay.java</span></div><h1>GamePlay.java</h1><pre class="source lang-java linenums">package cdio2;
+
+<span class="fc" id="L3">public class GamePlay {</span>
+	int diceValue;
+	int balanceChange;
+	String textID;
+<span class="fc" id="L7">	boolean gameWon = false;</span>
+	int dice1, dice2;
+<span class="fc" id="L9">	private boolean extraTurn = false;</span>
+	
+	/**
+	 * getBalanceChange returnerer ændringen i spillerens balance
+	 * @return
+	 */
+	public int getBalanceChange() {
+<span class="fc" id="L16">		return balanceChange;</span>
+	}
+	
+	/**
+	 * getTextID returnerer TextID
+	 * @return
+	 */
+	public String getTextID() {
+<span class="nc" id="L24">		return textID;</span>
+	}
+	
+	/**
+	 * getGameWon returnerer gameWon
+	 * @return
+	 */
+	public boolean getGameWon() {
+<span class="fc" id="L32">		return gameWon;</span>
+	}
+	
+	/**
+	 * setGameWon sætter gameWon til at være en boolean
+	 * @param bool
+	 */
+	public void setGameWon(boolean bool) {
+<span class="fc" id="L40">		gameWon = bool;</span>
+<span class="fc" id="L41">	}</span>
+	
+	/**
+	 * getExtraTurn returner extraTurn
+	 * @return
+	 */
+	public boolean getExtraTurn() {
+<span class="fc" id="L48">		return extraTurn;</span>
+	}
+	
+	/**
+	 * useTurn anvender værdien fra dice klassen og pålægger en StringID samt en spillerændring
+	 * @param dice1: Tager en int fra dice klassen
+	 * @param dice2: Tager en int fra dice klassen
+	 */
+	public void useTurn(int dice1, int dice2)
+	{
+<span class="fc" id="L58">		extraTurn = false;</span>
+<span class="fc" id="L59">		this.dice1 = dice1;</span>
+<span class="fc" id="L60">		this.dice2 = dice2;</span>
+<span class="fc" id="L61">		diceValue = dice1 + dice2;</span>
+<span class="pc bpc" id="L62" title="1 of 12 branches missed.">		switch (diceValue)</span>
+		{
+		case 2: 
+<span class="fc" id="L65">			textID = &quot;tower&quot;;</span>
+			// Prints event based string, with the correct message.
+<span class="fc" id="L67">			balanceChange = 250; // Changes the balance of the current player.</span>
+<span class="fc" id="L68">			break;</span>
+		case 3:
+<span class="fc" id="L70">			textID = &quot;crater&quot;;</span>
+<span class="fc" id="L71">			balanceChange = -100;</span>
+<span class="fc" id="L72">			break;</span>
+		case 4:
+<span class="fc" id="L74">			textID = &quot;palaceGates&quot;;</span>
+<span class="fc" id="L75">			balanceChange = 100;</span>
+<span class="fc" id="L76">			break;</span>
+		case 5:
+<span class="fc" id="L78">			textID = &quot;coldDessert&quot;;</span>
+<span class="fc" id="L79">			balanceChange = -20;</span>
+<span class="fc" id="L80">			break;</span>
+		case 6:
+<span class="fc" id="L82">			textID = &quot;walledCity&quot;;</span>
+<span class="fc" id="L83">			balanceChange = 180;</span>
+<span class="fc" id="L84">			break;</span>
+		case 7:
+<span class="fc" id="L86">			textID = &quot;monastery&quot;;</span>
+<span class="fc" id="L87">			balanceChange = 0;</span>
+<span class="fc" id="L88">			break;</span>
+		case 8:
+<span class="fc" id="L90">			textID = &quot;blackCave&quot;;</span>
+<span class="fc" id="L91">			balanceChange = -70;</span>
+<span class="fc" id="L92">			break;</span>
+		case 9:
+<span class="fc" id="L94">			textID = &quot;mountain&quot;;</span>
+<span class="fc" id="L95">			balanceChange = 60;</span>
+<span class="fc" id="L96">			break;</span>
+		case 10:
+<span class="fc" id="L98">			textID = &quot;werewall&quot;;</span>
+<span class="fc" id="L99">			balanceChange = -80;</span>
+<span class="fc" id="L100">			extraTurn = true;</span>
+<span class="fc" id="L101">			break;</span>
+		case 11:
+<span class="fc" id="L103">			textID = &quot;pit&quot;;</span>
+<span class="fc" id="L104">			balanceChange = -50;</span>
+<span class="fc" id="L105">			break;</span>
+		case 12:
+<span class="fc" id="L107">			textID = &quot;goldmine&quot;;</span>
+<span class="fc" id="L108">			balanceChange = 650;</span>
+			break;
+		}
+<span class="fc" id="L111">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>MainGUI (10-Nov-2017 12:51:35)</div></body></html>

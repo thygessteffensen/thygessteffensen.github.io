@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="da"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>UseGui.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">MainGUI (10-Nov-2017 12:51:35)</a> &gt; <a href="../../index.html" class="el_group">16_del2</a> &gt; <a href="../index.html" class="el_bundle">CDIO2</a> &gt; <a href="index.source.html" class="el_package">cdio2</a> &gt; <span class="el_source">UseGui.java</span></div><h1>UseGui.java</h1><pre class="source lang-java linenums">package cdio2;
+
+import java.awt.Color;
+import java.util.Scanner;
+
+import desktop_codebehind.Car;
+import desktop_codebehind.Car.Builder;
+import desktop_fields.Field;
+import desktop_resources.GUI;
+
+<span class="fc" id="L11">public class UseGui {</span>
+	Player[] player;
+<span class="fc" id="L13">	Scanner scan = new Scanner(System.in);</span>
+<span class="fc" id="L14">	int numberOfPlayers = 2;</span>
+	String name, color;
+<span class="fc" id="L16">	Car car0 = new Car.Builder()</span>
+<span class="fc" id="L17">			.primaryColor(Color.RED)</span>
+<span class="fc" id="L18">			.secondaryColor(Color.BLUE)</span>
+<span class="fc" id="L19">			.build();</span>
+<span class="fc" id="L20">	Car car1 = new Car.Builder()</span>
+<span class="fc" id="L21">			.primaryColor(Color.BLUE)</span>
+<span class="fc" id="L22">			.secondaryColor(Color.RED)</span>
+<span class="fc" id="L23">			.build();</span>
+	
+	/**
+	 * Danner spille pladen der skal bruges til spillet. 
+	 * Denne metode skal køres først!
+	 * @param fields
+	 */
+	public void startGame(Field[] fields) {
+<span class="fc" id="L31">		GUI.create(fields);</span>
+<span class="fc" id="L32">		GUI.setDice(1, 3);</span>
+<span class="fc" id="L33">	}</span>
+	
+	/**
+	 * Tilføjer det antal spiller der skal spille, med navn og brik farve.
+	 */
+	private void assignPlayers(String namePlayer) {
+<span class="fc" id="L39">		player = new Player[numberOfPlayers]; // Creates array</span>
+		/*
+		 * Assigns Name and color.
+		 */
+<span class="fc bfc" id="L43" title="All 2 branches covered.">		for (int i = 0; i &lt; numberOfPlayers; i++)</span>
+		{
+<span class="fc" id="L45">			name = GUI.getUserString(namePlayer + (i+1) + &quot; : &quot;);</span>
+<span class="fc" id="L46">			player[i] = new Player(name);</span>
+		}
+<span class="fc" id="L48">	}</span>
+	
+	/**
+	 * Tilføjer spillerne til pladen.
+	 */
+	public void addPlayerToBoard(String namePlayer) {
+<span class="fc" id="L54">		assignPlayers(namePlayer);</span>
+<span class="fc" id="L55">		GUI.addPlayer(player[0].getPlayerName(), player[0].getWallet().getBalance(), car0);</span>
+<span class="fc" id="L56">		GUI.addPlayer(player[1].getPlayerName(), player[1].getWallet().getBalance(), car1);</span>
+		
+<span class="fc" id="L58">	}</span>
+	
+	/**
+	 * setText sætter displayChanceCard til String'en txt
+	 * @param txt
+	 */
+	public void setText(String txt) {
+<span class="fc" id="L65">		GUI.showMessage(txt);</span>
+<span class="fc" id="L66">	}</span>
+	
+	/**
+	 * getUserOK danner et felt med parametrne String msg og Stirng buttons
+	 * @param msg
+	 * @param buttons
+	 */
+	public void getUserOK(String msg, String buttons) {
+<span class="fc" id="L74">		GUI.getUserButtonPressed(msg, buttons);</span>
+<span class="fc" id="L75">	}</span>
+	
+	/**
+	 * setDice danner to terninger der viser hhv d1 og d2
+	 * @param d1
+	 * @param d2
+	 */
+	public void setDice(int d1, int d2) {
+<span class="fc" id="L83">		GUI.setDice(d1, d2);</span>
+<span class="fc" id="L84">	}</span>
+	
+	/**
+	 * setNewBalance danner et felt der viser en int newBalance og en String name
+	 * @param name
+	 * @param newBalance
+	 */
+	public void setNewBalance(String name, int newBalance) {
+<span class="fc" id="L92">		GUI.setBalance(name, newBalance);</span>
+<span class="fc" id="L93">	}</span>
+	
+	/**
+	 * getPlayerArray returnerer et array af player (Spillere)
+	 * @return
+	 */
+	public Player[] getPlayerArray() {
+<span class="nc" id="L100">		return player;</span>
+	}
+	
+	/**
+	 * setPlayer sætter en figur (Bil) til en spiller og hvor på pladen spilleren er
+	 * @param field
+	 * @param player
+	 */
+	public void setPlayer(int field, String player) {
+<span class="fc" id="L109">		GUI.setCar(field, player);</span>
+<span class="fc" id="L110">	}</span>
+	
+	/**
+	 * removePlayer fjerner en figur (Bil) af en spiller fra det angivede felt
+	 * @param field
+	 * @param player
+	 */
+	public void removePlayer(int field, String player) {
+<span class="fc" id="L118">		GUI.removeCar(field, player);</span>
+<span class="fc" id="L119">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>MainGUI (10-Nov-2017 12:51:35)</div></body></html>

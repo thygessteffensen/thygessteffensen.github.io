@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="da"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>DiceTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">MainGUI (10-Nov-2017 12:51:35)</a> &gt; <a href="../../index.html" class="el_group">16_del2</a> &gt; <a href="../index.html" class="el_bundle">CDIO2</a> &gt; <a href="index.source.html" class="el_package">tests</a> &gt; <span class="el_source">DiceTest.java</span></div><h1>DiceTest.java</h1><pre class="source lang-java linenums">package tests;
+
+import cdio2.Dice;	
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+
+<span class="nc" id="L14">public class DiceTest {</span>
+<span class="nc" id="L15">	Dice dice = new Dice();</span>
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		
+<span class="nc" id="L20">	}</span>
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+<span class="nc" id="L24">	}</span>
+
+	@Before
+	public void setUp() throws Exception {
+		
+<span class="nc" id="L29">	}</span>
+
+	@After
+	public void tearDown() throws Exception {
+		
+<span class="nc" id="L34">	}</span>
+	@Test
+	public void testGetDiceValue1() {
+<span class="nc bnc" id="L37" title="All 2 branches missed.">		for (int i = 0; i &lt; 100000; i++) { // Ruller terning 1 100000 gange</span>
+<span class="nc" id="L38">			dice.roll();</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">			if (dice.getDiceValue1() &lt; 1 || dice.getDiceValue1() &gt; 6) {</span>
+<span class="nc" id="L40">				System.out.println(dice.getDiceValue1());</span>
+<span class="nc" id="L41">				fail(&quot;Roll-returværdi er udenfor spektret 1-6&quot;);</span>
+<span class="nc" id="L42">				break;</span>
+			}
+			
+		}
+		
+		
+<span class="nc" id="L48">	}</span>
+
+	@Test
+	public void testGetDiceValue2() {
+<span class="nc bnc" id="L52" title="All 2 branches missed.">		for (int i = 0; i &lt; 100000; i++) {</span>
+<span class="nc" id="L53">			dice.roll();</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">			if (dice.getDiceValue2() &lt; 1 || dice.getDiceValue2() &gt; 6) {</span>
+<span class="nc" id="L55">				fail(&quot;Roll-returværdi er udenfor spektret 1-6&quot;);</span>
+<span class="nc" id="L56">				break;</span>
+			}	
+		}
+<span class="nc" id="L59">	}</span>
+	//Tester om hyppigheden for hvert slag er er lige stor, for terning 1.
+	public void testRollFrequencyTerning1() {
+		//Definere alle øjnene
+<span class="nc" id="L63">		int count1d1=0, count2d1=0, count3d1=0, count4d1=0, count5d1=0, count6d1=0;</span>
+	
+		//Tester for 100000 kast og ser om hyppigheden for hvert slag er lige stor for terning 1
+<span class="nc bnc" id="L66" title="All 2 branches missed.">		for (int i = 0; i &lt; 100000; i++) {</span>
+<span class="nc bnc" id="L67" title="All 7 branches missed.">			switch(dice.getDiceValue1()) {</span>
+<span class="nc" id="L68">			case 1: count1d1++;</span>
+<span class="nc" id="L69">				break;</span>
+<span class="nc" id="L70">			case 2: count2d1++;</span>
+<span class="nc" id="L71">				break;</span>
+<span class="nc" id="L72">			case 3: count3d1++;</span>
+<span class="nc" id="L73">				break;</span>
+<span class="nc" id="L74">			case 4: count4d1++;</span>
+<span class="nc" id="L75">				break;</span>
+<span class="nc" id="L76">			case 5: count5d1++;</span>
+<span class="nc" id="L77">				break;</span>
+<span class="nc" id="L78">			case 6: count6d1++;</span>
+<span class="nc" id="L79">				break;</span>
+<span class="nc" id="L80">			default: System.out.println(&quot;Der er noget galt&quot;);</span>
+				break;
+			}
+			
+		}
+		//Nu tester vi om hver terning slår hver side cirka lige hyppigt med en afvigelse på 4%
+		//Denne test er for terning 1
+<span class="nc" id="L87">		int test = (int)(100000*16.6667)/(100);	//1/6 af størrelsen på testen</span>
+<span class="nc" id="L88">		int grænsOp = (int)(test + (test*4)/(100));</span>
+<span class="nc" id="L89">		int grænsNed = (int)(test - (test*4)/(100));</span>
+		//Dump programmet hvis hvert tilfælde er ude for den øvre og nedre grænse 
+<span class="nc bnc" id="L91" title="All 12 branches missed.">		if (count1d1 &gt; grænsOp || count1d1 &lt; grænsNed || count2d1 &gt; grænsOp || count2d1 &lt; grænsNed || count3d1 &gt; grænsOp || count3d1 &lt; grænsNed || </span>
+<span class="nc bnc" id="L92" title="All 8 branches missed.">				count4d1 &gt; grænsOp || count4d1 &lt; grænsNed || count5d1 &gt; grænsOp || count5d1 &lt; grænsNed ||</span>
+<span class="nc bnc" id="L93" title="All 4 branches missed.">				count6d1 &gt; grænsOp || count6d1 &lt; grænsNed){ </span>
+<span class="nc" id="L94">			fail(&quot;Hyppigheden af de forskellige forekommer ikke lige ofte&quot;);	</span>
+		}
+<span class="nc" id="L96">	}</span>
+	//Tester om hyppigheden for hvert slag er er lige stor, for terning 2.
+		public void testRollFrequencyTerning2() {
+			//Definere alle øjnene
+<span class="nc" id="L100">			int count1d2=0, count2d2=0, count3d2=0, count4d2=0, count5d2=0, count6d2=0;</span>
+		
+			//Tester for 100000 kast og ser om hyppigheden for hvert slag er lige stor for terning 1
+<span class="nc bnc" id="L103" title="All 2 branches missed.">			for (int i = 0; i &lt; 100000; i++) {</span>
+<span class="nc bnc" id="L104" title="All 7 branches missed.">				switch(dice.getDiceValue2()) {</span>
+<span class="nc" id="L105">				case 1: count1d2++;</span>
+<span class="nc" id="L106">					break;</span>
+<span class="nc" id="L107">				case 2: count2d2++;</span>
+<span class="nc" id="L108">					break;</span>
+<span class="nc" id="L109">				case 3: count3d2++;</span>
+<span class="nc" id="L110">					break;</span>
+<span class="nc" id="L111">				case 4: count4d2++;</span>
+<span class="nc" id="L112">					break;</span>
+<span class="nc" id="L113">				case 5: count5d2++;</span>
+<span class="nc" id="L114">					break;</span>
+<span class="nc" id="L115">				case 6: count6d2++;</span>
+<span class="nc" id="L116">					break;</span>
+<span class="nc" id="L117">				default: System.out.println(&quot;Der er noget galt&quot;);</span>
+					break;
+				}
+				
+			}
+			//Nu tester vi om hver terning slår hver side cirka lige hyppigt med en afvigelse på 4%
+			//Denne test er for terning 2
+<span class="nc" id="L124">			int test = (int)(100000*16.6667)/(100);	//1/6 af størrelsen på testen</span>
+<span class="nc" id="L125">			int grænsOp = (int)(test + (test*4)/(100));</span>
+<span class="nc" id="L126">			int grænsNed = (int)(test - (test*4)/(100));</span>
+				//Dump programmet hvis hvert tilfælde er ude for den øvre og nedre grænse 
+<span class="nc bnc" id="L128" title="All 12 branches missed.">				if (count1d2 &gt; grænsOp || count1d2 &lt; grænsNed || count2d2 &gt; grænsOp || count2d2 &lt; grænsNed || count3d2 &gt; grænsOp || count3d2 &lt; grænsNed || </span>
+<span class="nc bnc" id="L129" title="All 8 branches missed.">						count4d2 &gt; grænsOp || count4d2 &lt; grænsNed || count5d2 &gt; grænsOp || count5d2 &lt; grænsNed ||</span>
+<span class="nc bnc" id="L130" title="All 4 branches missed.">						count6d2 &gt; grænsOp || count6d2 &lt; grænsNed){ </span>
+<span class="nc" id="L131">				fail(&quot;Hyppigheden af de forskellige forekommer ikke lige ofte&quot;);	</span>
+			}
+<span class="nc" id="L133">		}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>MainGUI (10-Nov-2017 12:51:35)</div></body></html>
